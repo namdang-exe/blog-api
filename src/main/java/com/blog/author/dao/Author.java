@@ -1,14 +1,23 @@
 package com.blog.author.dao;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.blog.post.dao.Post;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Author {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
     private String username;
@@ -20,7 +29,14 @@ public class Author {
     @Column(nullable = false)
     private LocalDate createdAt;
 
-    // Getters and Setters
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    private List<Post> posts;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDate.now();
+    }
+
     public Long getId() {
         return id;
     }
@@ -53,7 +69,7 @@ public class Author {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
+    public List<Post> getPosts() {
+        return posts;
     }
 }

@@ -2,6 +2,23 @@
 
 ---
 
+### Session 3 — 2026-04-19
+Completed:
+- Answered warm-up question on `ddl-auto=create-drop`
+- Built full Author layer: Author.java, AuthorRepository, AuthorService, AuthorController
+- Added `@GeneratedValue(IDENTITY)`, `@PrePersist` for auto createdAt, removed setId/setCreatedAt
+- Created AuthorRequest, AuthorResponse DTOs and static AuthorMapper
+- Wired DTOs through service and controller — no raw entity exposure
+- Tested all three endpoints (POST, GET by id, GET by username) — all passing
+
+Left unfinished:
+- Nothing — Phase 1 complete
+
+Next session starts at:
+- Phase 2: JPA Relationships — build Post entity with @ManyToOne to Author
+
+---
+
 ### Session 2 — 2026-04-18
 Completed:
 - Established tutoring rules and session-notes workflow (BLOG_PROJECT_NOTES.md created)

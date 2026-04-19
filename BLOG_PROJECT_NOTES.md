@@ -16,7 +16,7 @@ Repo path: D:\projects\SpringApp\blog-api
 **Tutoring approach:** Skip basics, move at enterprise pace. Map new Spring concepts to Reladomo equivalents where helpful (e.g. JpaRepository ≈ Finder, @Entity + annotations ≈ XML descriptor, @Transactional ≈ Reladomo's MithraTransaction). Focus explanations on "why Spring does it this way" not "what is an ORM".
 
 ## Phase Progress
-- [ ] Phase 1 — Foundation
+- [x] Phase 1 — Foundation
 - [ ] Phase 2 — JPA Relationships
 - [ ] Phase 3 — Validation & Error Handling
 - [ ] Phase 4 — Search, Filtering & Pagination
@@ -27,9 +27,9 @@ Repo path: D:\projects\SpringApp\blog-api
 - [ ] Phase 9 — Ship It
 
 ## Current Status
-Phase: Phase 1 — Foundation (in progress)  
-Last session: Session 2  
-Pick up here next time: Step 4 — Write `Author.java` (JPA entity) — answer the warm-up question on `ddl-auto=create-drop` first, then build Entity → Repository → Service → Controller → DTOs
+Phase: Phase 2 — JPA Relationships  
+Last session: Session 3  
+Pick up here next time: Build Post entity with @ManyToOne relationship to Author
 
 ## Session Log
 → See [SESSION_LOG.md](SESSION_LOG.md)
@@ -45,6 +45,13 @@ Pick up here next time: Step 4 — Write `Author.java` (JPA entity) — answer t
 | `@Configuration` | Marks a class as a source of bean definitions — Spring reads it at startup | 1 |
 | `@EnableWebSecurity` | Activates Spring Security's filter chain — without it, security beans are ignored | 1 |
 | `SecurityFilterChain` (bean) | Modern replacement for `WebSecurityConfigurerAdapter` (removed in Spring Security 6) — defines HTTP security rules as a bean | 1 |
+| `@GeneratedValue(IDENTITY)` | Delegates ID generation to the DB's auto-increment — never set ID manually when using this | 1 |
+| `@PrePersist` | Lifecycle callback that fires just before Hibernate runs INSERT — used to auto-set `createdAt` | 1 |
+| `JpaRepository<T, ID>` | Spring Data interface — declare it, Spring generates the implementation at runtime (≈ Reladomo Finder) | 1 |
+| `Optional<T>` in repository | Forces caller to handle "not found" explicitly — prevents surprise NullPointerExceptions | 1 |
+| Constructor injection | Inject dependencies via constructor, not field `@Autowired` — Spring wires it automatically with one constructor | 1 |
+| DTO pattern | `AuthorRequest` (inbound) / `AuthorResponse` (outbound) — decouples API contract from DB entity | 1 |
+| Static mapper class | `AuthorMapper` with static methods — maps between entity and DTOs, no need to inject as a bean | 1 |
 
 ## Quiz Scores
 | Phase | Score | Topics to Revisit |
